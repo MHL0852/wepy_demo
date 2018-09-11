@@ -1,10 +1,76 @@
 <style lang="less">
-
+  page{
+    background: #f7f7f7;
+  }
+  .mainListContainer{
+    margin-top: 20rpx;
+    width: 750rpx;
+    a{
+      display: inline-block;
+      width: 750rpx;
+      height: 480rpx;
+      padding:15rpx 20rpx;
+    }
+    image{
+      width: 690rpx;
+      height: 440 rpx;
+    }
+  }
+  .program-msr{
+    width: 750rpx;
+    .container{
+      width: 710rpx;
+      padding:20rpx;
+      .title{
+        font-size: 28rpx;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+      }
+      .text{
+        color:rgba(0,0,0,0.56);
+      }
+      .button{
+        color:#C2A661;
+        &:after{
+          display: inline-block;
+          width: 10 rpx;
+          height: 10 rpx;
+          border-right: 1px solid #C2A661;
+          border-top: 1px solid #C2A661;
+          transform: rotate(30deg);
+        }
+      }
+    }
+  }
 </style>
 
 <template>
   <header></header>
   <slider></slider>
+  <view class="mainListContainer">
+    <block wx:for="{{mainList}}" wx:key="index">
+      <a href="{{item.href}}">
+        <image src="{{item.url}}"/>
+      </a>
+    </block>
+  </view>
+
+  <view class="program-msr">
+    <view class="container">
+      <view class="title">
+        星享俱乐部
+      </view>
+      <view class="text">
+        开启您的星享之旅，星星越多、会员等级越高、好礼越丰富。
+        <a class="button link" href="/account/my-starbucks-rewards">了解更多</a>
+      </view>
+    </view>
+    <view class="image">
+      <image src="{{'https://www.starbucks.com.cn/assets/images/logo-msr.svg'}}"/>
+    </view>
+  </view>
+
   <footer></footer>
 </template>
 
@@ -22,9 +88,24 @@
     components = {
       footer: Footer,
       header: Header,
-      slider: Slider
+      slider: Slider,
     }
 
-    data = {}
+    data = {
+      mainList: [
+        {
+          href: 'http://tb.cn/yoaztMw',
+          url: 'https://www.starbucks.com.cn/images/pages/starbucks-tmall-0910-cn.jpg'
+        },
+        {
+          href: 'https://www.starbucks.com.cn/design-studio/',
+          url: 'https://www.starbucks.com.cn/images/pages/starbucks-design-studio-web-china.jpg'
+        },
+        {
+          href: 'https://www.starbucks.com.cn/about/careers/',
+          url: 'https://www.starbucks.com.cn/images/pages/homepage-career-cn.jpg'
+        }
+      ]
+    }
   }
 </script>

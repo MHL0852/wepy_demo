@@ -1,5 +1,6 @@
 <style lang="less">
   .headContainer{
+    background: #fff;
     height: 100rpx;
     line-height: 100rpx;
     font-size: 48rpx;

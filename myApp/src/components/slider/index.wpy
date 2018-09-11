@@ -12,22 +12,15 @@
     width: 750rpx;
     height: 700rpx;
     overflow: hidden;
-    ul {
+    .swiper {
       position: relative;
-      left: -750rpx;
       display: block;
-      width: 3750rpx;
+      width: 750rpx;
       height: 100%;
       transition: .5s;
-      li {
-        display: inline-block;
-        float: left;
-        width: 750rpx;
-        height: 100%;
         image {
           width: 750rpx;
           height: 700rpx;
-        }
       }
     }
   }
@@ -35,23 +28,13 @@
 
 <template>
   <div class="sliderContainer">
-    <ul class="clearfix sliderContent">
-      <li>
-        <piccell3 url="https://www.starbucks.com.cn/assets/images/featured/2018summer3/kv-mooncake-mobile.jpg"/>
-      </li>
-      <li>
-        <piccell1 url="https://www.starbucks.com.cn/assets/images/featured/2018summer3/fp-cold-mobile.jpg"/>
-      </li>
-      <li>
-        <piccell2 url="https://www.starbucks.com.cn/assets/images/featured/2018autumn1/kv-bever-mobile.jpg"/>
-      </li>
-      <li>
-        <piccell3 url="https://www.starbucks.com.cn/assets/images/featured/2018summer3/kv-mooncake-mobile.jpg"/>
-      </li>
-      <li>
-        <piccell1 url="https://www.starbucks.com.cn/assets/images/featured/2018summer3/fp-cold-mobile.jpg"/>
-      </li>
-    </ul>
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="800" circular="true">
+      <block wx:for="{{urlList}}" wx:for-index="index">
+        <swiper-item>
+          <image src="{{item.url}}" class="slide-image" mode="aspectFill"/>
+        </swiper-item>
+      </block>
+    </swiper>
   </div>
 </template>
 
@@ -64,15 +47,15 @@
       urlList: {
         type: [Array, String],
         default: [
-          'https://www.starbucks.com.cn/assets/images/featured/2018summer3/fp-cold-mobile.jpg',
-          'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/kv-bever-mobile.jpg',
-          'https://www.starbucks.com.cn/assets/images/featured/2018summer3/kv-mooncake-mobile.jpg'
+          {url: 'https://www.starbucks.com.cn/assets/images/featured/2018summer3/fp-cold-mobile.jpg'},
+          {url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/kv-bever-mobile.jpg'},
+          {url: 'https://www.starbucks.com.cn/assets/images/featured/2018summer3/kv-mooncake-mobile.jpg'}
         ]
       }
     }
 
     data = {
-      left: '-750'
+
     }
 
     components = {
@@ -83,6 +66,7 @@
     }
 
     onLoad() {
+
     }
   }
 </script>
