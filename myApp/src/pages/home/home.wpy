@@ -1,0 +1,30 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <header></header>
+  <slider></slider>
+  <footer></footer>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Footer from '@/components/footer/footer'
+  import Header from '@/components/head/index'
+  import Slider from '@/components/slider/index'
+
+  export default class extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test'
+    }
+
+    components = {
+      footer: Footer,
+      header: Header,
+      slider: Slider
+    }
+
+    data = {}
+  }
+</script>

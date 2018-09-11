@@ -1,0 +1,54 @@
+<style lang="less">
+  .footerContainer {
+    position: fixed;
+    bottom:0;
+    left: 0;
+    height: 120 rpx;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 0px 1px #ccc;
+    ul{
+      height: 120rpx;
+      display: inline-block;
+      width: 100%;
+      li{
+        text-align: center;
+        display: inline-block;
+        width: 18%;
+        margin: 0 1%;
+        height: 80rpx;
+        line-height: 80rpx;
+        font-size: 24rpx;
+        color:#000;
+      }
+    }
+
+  }
+
+</style>
+
+<template>
+  <view class="footerContainer">
+    <ul>
+      <li>主页</li>
+      <li>门店</li>
+      <li>我的账户</li>
+      <li>菜单</li>
+      <li>更多</li>
+    </ul>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Footer extends wepy.component {
+    components = {}
+    data = {}
+    events= {}
+    methods= {}
+    onLoad() {
+
+    }
+  }
+</script>

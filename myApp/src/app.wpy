@@ -1,5 +1,4 @@
 <style lang="less">
-  @import "./iconfont.wxss";
 .container {
   height: 100%;
   display: flex;
@@ -16,35 +15,27 @@ import 'wepy-async-function'
 
 import { setStore } from 'wepy-redux'
 import configStore from './store'
-import 'wepy-async-function'
 
-const store = configStore();
-setStore(store);
+const store = configStore()
+setStore(store)
 
 export default class extends wepy.app {
-  constructor () {
-    super();
-    this.use('promisify');
-  }
-
   config = {
     pages: [
       'pages/home/home',
-   /*   'pages/brand/brand',
-      'pages/order/order',
-      'pages/trolley/trolley',*/
+      'pages/index'
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#996622',
-      navigationBarTitleText: '这是一个标题',
-      navigationBarTextStyle: 'white'
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'black'
     }
-  };
+  }
 
   globalData = {
     userInfo: null
-  };
+  }
 
   constructor () {
     super()

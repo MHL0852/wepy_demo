@@ -1,0 +1,20 @@
+<style>
+
+</style>
+
+<template>
+<image src="{{url}}"/>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class extends wepy.component{
+    props={
+      url:{
+        type:String,
+        default:'https://www.baidu.com/img/superlogo_c4d7df0a003d3db9b65e9ef0fe6da1ec.png?where=super'
+      }
+    }
+  }
+</script>
