@@ -1,0 +1,73 @@
+<style lang="less">
+  .hidden{
+    display: none;
+  }
+  .selectContainer{
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 1px 0 0 1px #ccc;
+  view{
+    float: left;
+    font-size: 28rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color:rgba(0,0,0,0.56);
+    display: inline-block;
+    margin: 0 20rpx;
+  }
+  .active{
+    border-bottom: 3px solid #00A862;
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 700;
+    padding-bottom: 3px;
+  }
+}
+</style>
+
+<template>
+  <header headText="登陆或创建一个新账户"/>
+
+  <view class="selectContainer">
+    <view class="{{current==='login'?'active':'false'}}" @tap.stop="selectClick('login')">
+      登录
+    </view>
+    <view class="{{current==='register'?'active':'false'}}" @tap.stop="selectClick('register')">
+      注册
+    </view>
+    <view class="{{current==='about'?'active':'false'}}" @tap.stop="selectClick('about')">
+      关于星享俱乐部
+    </view>
+  </view>
+
+  <view class="loginContainer {{current==='login'?'show':'hidden'}}">
+    <input type="text" placeholder="用户名或电子邮箱">
+    <input type="text" placeholder="密码">
+  </view>
+
+  <footer/>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Footer from '@/components/footer/footer'
+  import Header from '@/components/head/index'
+
+  export default class extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test'
+    }
+    data={
+      current: 'login'
+    }
+    components= {
+      footer: Footer,
+      header: Header
+    }
+    methods={
+      selectClick: function(arg) {
+        this.setData('current', arg)
+      }
+    }
+  }
+</script>

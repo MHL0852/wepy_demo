@@ -20,9 +20,9 @@
 
   export default class extends wepy.component {
     props={
-      headText:{
-        type:[String,Number],
-        default:'心情惬意，来杯咖啡吧'
+      headText: {
+        type: String,
+        default: '心情惬意，来杯咖啡吧'
       }
     }
   }

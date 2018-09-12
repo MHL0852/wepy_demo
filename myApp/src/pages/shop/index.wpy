@@ -1,0 +1,17 @@
+<style lang="less"></style>
+
+<tenplate>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: {{view.Height}}px;"></map>
+
+</tenplate>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class extends wepy.page {
+    config = {
+      navigationBarTitleText: 'test'
+    }
+    data={}
+  }
+</script>
