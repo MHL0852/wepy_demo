@@ -1,4 +1,7 @@
 <style lang="less">
+  page{
+    height: 100%;
+  }
   .hidden{
     display: none;
   }
@@ -23,6 +26,130 @@
     padding-bottom: 3px;
   }
 }
+
+  .loginContainer{
+    height: 100%;
+    padding:40rpx 40rpx 0;
+    background: rgba(0, 0, 0, 0.06);
+    color:rgba(0, 0, 0, 0.87);
+
+    .user{
+      width: 670rpx;
+      padding: 20rpx 0;
+      font-size: 28rpx;
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .password{
+      width: 670rpx;
+      padding: 20rpx 0;
+      font-size: 28rpx;
+      margin-bottom: 20rpx;
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .rember{
+      color:rgba(0,0,0,0.87);
+      height: 80rpx;
+      line-height: 80rpx;
+      font-size: 32rpx;
+      label{
+        display: inline-block;
+        border: 1px solid #00A862;
+        border-radius: 8rpx;
+        margin-top: 8rpx;
+        margin-right: 10rpx;
+        float: left;
+        width: 60rpx;
+        height: 60rpx;
+        checkbox{
+          display: none;
+        }
+      }
+      view{
+        float: right;
+      }
+    }
+
+    .verification{
+      overflow: hidden;
+      font-size: 28rpx;
+      padding:20rpx 40rpx;
+      margin-top: 40rpx;
+      background: #fff;
+      box-shadow: 0 0 1px #aaa;
+      image{
+        width: 300rpx;
+        height: 100rpx;
+        display: inline-block;
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+      input{
+        width: 260rpx;
+        height: 100rpx;
+        padding-left: 20rpx;
+        display: inline-block;
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+      button{
+        color: #fff;
+        float: right;
+        width: 200rpx;
+        height: 70rpx;
+        font-size: 32rpx;
+        line-height: 70rpx;
+        background: #00A862;
+        border: 1px solid #00A862;
+      }
+    }
+
+    .login{
+      width: 160rpx;
+      height: 100rpx;
+      float: right;
+      font-weight: 700;
+      font-size: 32rpx;
+      line-height: 32rpx;
+      padding: 12px 24px;
+      background: #f7f7f7;
+      border-radius: 48px;
+      border-color: #f7f7f7;
+      color: rgba(0, 0, 0, 0.38);
+      margin: 100rpx 0 0 0;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.38);
+    }
+  }
+
+  .registerContainer{
+    height: 100%;
+    width: 670rpx;
+    padding: 0 40rpx;
+    background: rgba(0, 0, 0, 0.06);
+    color:rgba(0, 0, 0, 0.87);
+    .cardNum, .password{
+      width: 670rpx;
+      height: 40rpx;
+      padding: 40rpx 0;
+      line-height: 40rpx;
+      font-size: 24rpx;
+      border-bottom: 1px solid rgba(0,0,0,0.12);
+    }
+
+    .tip{
+    font-size: 24rpx;
+      color:#00A862;
+    }
+
+    .btn {
+      button {
+        width: 200 rpx;
+        height: 100 rpx;
+        border-radius: 50 rpx;
+        border: 1px solid rgba(0, 0, 0, 0.36);
+        box-shadow: 2px 0 2px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
 </style>
 
 <template>
@@ -41,8 +168,63 @@
   </view>
 
   <view class="loginContainer {{current==='login'?'show':'hidden'}}">
-    <input type="text" placeholder="用户名或电子邮箱">
-    <input type="text" placeholder="密码">
+    <view class="user">
+      <input type="text" name="user" placeholder="用户名或电子邮箱">
+    </view>
+    <view class="password">
+      <input type="text" password="true" name="password" placeholder="密码">
+    </view>
+    <view class="rember">
+      <label>
+        <checkbox type="checkbox" name="rember"></checkbox>
+      </label>
+      下次自动登录
+      <view class="forget">忘记密码？</view>
+    </view>
+
+    <view class="verification">
+      请输入下图中的验证码:
+      <image src=""/>
+      <input type="text" name="verification" placeholder="请输入验证码">
+      <icon></icon>
+      <icon></icon>
+      <button>验证</button>
+    </view>
+
+    <button class="login">登录</button>
+  </view>
+
+  <view class="registerContainer {{current==='register'?'show':'hidden'}}" >
+    <view class="cardNum">
+      <input type="text" placeholder="输入您的星享卡或星礼卡卡号（请勿输入空格或下划线）">
+    </view>
+    <view class="password">
+      <input type="text" placeholder="请输入密码">
+    </view>
+    <view class="tip">
+      这是什么？
+    </view>
+    <view class="btn">
+      <button>下一步</button>
+    </view>
+    <view class="buyCard">
+      <view class="top">
+        还没有卡？
+        <view class="float-right">
+          <view class="icon-android">
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-android.svg"></image>
+          </view>
+          <view class="icon-ios">
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-ios.svg"></image>
+          </view>
+        </view>
+      </view>
+      <view class="bottom">
+        下载
+        <a>星巴克APP</a>
+        在线购买电子星礼卡，10 元立减金助力开启星享之旅。
+      </view>
+    </view>
   </view>
 
   <footer/>
