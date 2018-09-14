@@ -1,0 +1,117 @@
+<style lang="less">
+.fatureCell{
+  width: 750rpx;
+  padding: 40rpx 0;
+  text-align: center;
+
+  image{
+    width: 750rpx;
+    height: 750rpx;
+    margin-bottom: 60rpx;
+  }
+
+  .title{
+    margin-bottom: 24rpx;
+    text-align: center;
+    line-height: 140%;
+    font-size: 40rpx;
+    padding:0 32rpx;
+    color:#000;
+  }
+
+  .body{
+    width: 688rpx;
+    padding:0 32rpx;
+    font-weight: 400;
+    font-size: 32rpx;
+    line-height: 160%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    color:rgba(0,0,0,0.87);
+    &.hidden{
+      max-height: 96rpx;
+      &:after{
+        top: 0;
+        left: 0;
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        transition-duration: 0.1s;
+        transition-property: opacity;
+        background: linear-gradient(rgba(255, 255, 255, 0) 48rpx, #FFF);
+      }
+    }
+  }
+
+  .icon{
+    width: 10rpx;
+    height: 10rpx;
+    margin-left: -10rpx;
+    display: inline-block;
+    transform: rotate(-45deg);
+    border-top: 1px solid rgba(0,0,0,0.87);
+    border-right: 1px solid rgba(0,0,0,0.87);
+    &.hidden{
+      transform: rotate(135deg);
+    }
+  }
+}
+</style>
+
+<template>
+  <view class="fatureCell">
+    <image src="{{url}}"></image>
+    <view class="title">
+      {{title}}
+    </view>
+    <view class="body {{hiddenBody?'hidden':''}}">
+      {{body}}
+    </view>
+    <view class="iconContainer" @tap="handleClick">
+      <view class="icon {{hiddenBody?'hidden':''}}"></view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class extends wepy.component {
+  props= {
+    info: {
+      type: Object,
+      default: null
+    }
+  }
+
+  computed= {
+    url: function() {
+      return this.info.url
+    },
+    title: function() {
+      return this.info.title
+    },
+    body: function() {
+      return this.info.text
+    }
+  }
+
+  data={
+    hiddenBody: true
+  }
+  methods= {
+    handleClick: function() {
+      console.log(this.hiddenBody)
+      this.hiddenBody = !this.hiddenBody
+      this.$apply()
+    }
+  }
+
+  onLoad() {
+    console.log(this.info)
+  }
+}
+</script>

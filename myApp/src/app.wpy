@@ -22,8 +22,11 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/account/index',
       'pages/home/home',
+      'pages/menu/index',
+      'pages/shop/index',
+      'pages/account/index',
+      'pages/menu/beverages',
       'pages/index'
     ],
     window: {

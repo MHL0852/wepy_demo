@@ -20,20 +20,86 @@
         line-height: 80rpx;
         font-size: 24rpx;
         color:#000;
+        .icon{
+          width: 100%;
+          height: 60rpx;
+          overflow: hidden;
+          display: inline-block;
+          margin-bottom: -20rpx;
+          .active{
+            display: none;
+          }
+          image{
+              width: 50%;
+              height: 100%;
+              display: inline-block;
+          }
+        }
+        .text{
+          height: 40rpx;
+          line-height: 40rpx;
+        }
+        .navigator-hover{
+          image{
+            display: none;
+          }
+          .active{
+            display: inline-block;
+          }
+        }
       }
     }
 
   }
-
 </style>
 
 <template>
   <view class="footerContainer">
     <ul>
-      <li>主页</li>
-      <li>门店</li>
-      <li>我的账户</li>
-      <li>菜单</li>
+      <li>
+        <navigator url="../home/home">
+          <view class="icon">
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-home.svg" class=""></image>
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-home-active.svg" class="active" ></image>
+          </view>
+          <view class="text">
+            主页
+          </view>
+        </navigator>
+        </li>
+      <li>
+        <navigator url="../shop/index">
+          <view class="icon">
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-stores.svg"></image>
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-stores-active.svg" class="active" ></image>
+          </view>
+          <view class="text">
+            门店
+          </view>
+        </navigator>
+        </li>
+      <li>
+        <navigator url="../account/index">
+          <view class="icon">
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-account.svg"></image>
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-account-active.svg" class="active" ></image>
+          </view>
+          <view class="text">
+            我的账户
+          </view>
+        </navigator>
+        </li>
+      <li>
+        <navigator url="../menu/index">
+          <view class="icon">
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-menu.svg"></image>
+            <image src="https://www.starbucks.com.cn/assets/icons/icon-menu-active.svg" class="active"></image>
+          </view>
+          <view class="text">
+            菜单
+          </view>
+        </navigator>
+        </li>
       <li>更多</li>
     </ul>
   </view>
@@ -44,11 +110,11 @@
 
   export default class Footer extends wepy.component {
     components = {}
-    data = {}
+    data = {
+      active: 'home'
+    }
     events= {}
     methods= {}
-    onLoad() {
-
-    }
+    onLoad() {}
   }
 </script>

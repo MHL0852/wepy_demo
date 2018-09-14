@@ -5,6 +5,7 @@
     line-height: 100rpx;
     font-size: 48rpx;
     font-weight: 600;
+    padding-left: 40rpx;
     box-shadow: 0px 0px 1px #ccc inset;
   }
 </style>

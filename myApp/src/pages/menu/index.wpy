@@ -1,0 +1,272 @@
+<style lang="less">
+  .container{
+    width: 750rpx;
+    background: #fff;
+    padding-bottom: 120rpx;
+    .subcategories{
+      width: 100%;
+      height: 60rpx;
+      line-height: 60rpx;
+      font-size: 32rpx;
+      color: rgba(0, 0, 0, 0.87);
+      padding: 0 0 10rpx 40rpx;
+      .ategoryCell{
+        display: inline-block;
+        margin-right: 40rpx;
+      }
+
+      .active{
+        border-bottom: 3px solid #00A862;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 700;
+        padding-bottom: 3px;
+      }
+    }
+
+
+    .content{
+      .hero{
+        image{
+          width: 750rpx;
+          height: 820rpx;
+        }
+        .wrapper{
+          padding:60rpx 0 ;
+
+          .title{
+            color:#000;
+            width: 100%;
+            font-size: 40rpx;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 12px;
+          }
+
+          .body{
+            font-weight: 400;
+            line-height: 160%;
+            font-size: 32rpx;
+            padding: 0 10rpx;
+            color: rgba(0, 0, 0, 0.87);
+          }
+        }
+
+      }
+
+      .featured-items{
+
+      }
+    }
+  }
+</style>
+
+<template>
+  <header headText="菜单"></header>
+
+  <view class="container">
+    <view class="subcategories">
+      <view class="ategoryCell default {{active==='default'?'active':''}}">
+        <navigator url="./index">
+        季度精选
+        </navigator>
+      </view>
+      <view class="ategoryCell beverages {{active==='beverages'?'active':''}}">
+        <navigator url="./beverages">
+          饮料
+        </navigator>
+      </view>
+      <view class="ategoryCell food {{active==='food'?'active':''}}">
+        <navigator url="page/menu/food">
+        美食
+        </navigator>
+      </view>
+      <view class="ategoryCell coffee {{active==='coffee'?'active':''}}">
+        <navigator url="page/menu/coffee">
+        咖啡产品
+        </navigator>
+      </view>
+      <view class="ategoryCell merchandise {{active==='merchandise'?'active':''}}">
+        <navigator url="page/menu/merchandise">
+        商品
+        </navigator>
+      </view>
+    </view>
+
+    <view class="content">
+      <view class="hero">
+        <image src="{{'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/kv-bever-mobile.jpg'}}"></image>
+        <view class="wrapper">
+          <view class="title">
+            在一起的 好时光
+          </view>
+          <view class="body">
+            在秋天里，暂别夏日的酷暑，遇见金色的收获和无尽的思念。秋日暖心的开心果拿铁，馥郁坚果香中透着咖啡香，听起来就很快乐；饱含相思之味的红豆芝士拿铁，温润的红豆香甜与浓缩咖啡的醇正馥郁相得益彰，快与爱的人一起分享；秋日特献的冰摇桃桃拧香茶，桃桃果香馥郁，茶味芬芳沁心，每一口都清新宜人。
+          </view>
+        </view>
+      </view>
+
+      <!--//因为wepy组件的坑爹程度，原版mobile页面的漂亮动画木得了-->
+      <view class="featured-items">
+        <!--下面这种玩法太智障，还是不用组件了-->
+        <!--<faturecell1 :info="fatureLista"/>
+        <faturecell2 :info="fatureListb"/>
+        <faturecell3 :info="fatureListc"/>
+        <faturecell4 :info="fatureListd"/>
+        <faturecell5 :info="fatureListe"/>
+        <faturecell6 :info="fatureListf"/>
+        <faturecell7 :info="fatureListg"/>
+        <faturecell8 :info="fatureListh"/>-->
+
+        <repeat for="{{fatureList}}">
+          <view class="fatureCell">
+            <image src="{{item.url}}"></image>
+            <view class="title">
+              {{item.title}}
+            </view>
+            <view class="body {{item.show?'show':'hidden'}}">
+              {{item.text}}
+            </view>
+            <view class="iconContainer" @tap="handleClick({{index}})">
+              <view class="icon {{item.show?'show':'hidden'}}"></view>
+            </view>
+          </view>
+        </repeat>
+      </view>
+
+      <view class="wrapper">
+        <view class="title">
+          所有新品
+        </view>
+        一样的遍历生成，懒得写了。。。
+      </view>
+
+    </view>
+
+  </view>
+
+  <footer></footer>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Footer from '@/components/footer/footer'
+import Header from '@/components/head/index'
+import fatureCell from '@/components/fratureCell/index'
+
+export default class extends wepy.page {
+  config = {
+    navigationBarTitleText: '菜单'
+  }
+
+  components = {
+    footer: Footer,
+    header: Header,
+    faturecell1: fatureCell,
+    faturecell2: fatureCell,
+    faturecell3: fatureCell,
+    faturecell4: fatureCell,
+    faturecell5: fatureCell,
+    faturecell6: fatureCell,
+    faturecell7: fatureCell,
+    faturecell8: fatureCell
+  }
+
+  data= {
+    active: 'default',
+    fatureList: [
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-food-mobile.jpg',
+        title: '加“星”早餐，开启新一天',
+        text: '星巴克全新星级烘焙，经典遇上创新的焕新美味。奶香酥脆的扁桃仁流心丹麦酥，一口咬下香甜四溢；造型独特的大蘑菇头麦芬，给你更大满足。搭配醇香咖啡，相得益彰的早餐组合，美味又满足。'
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-food1-mobile.jpg',
+        title: '聚开心 玩出味',
+        text: '一口一个有颜又美味的星享小点，能让你一次品尝多种口味，每一口都带给你不一样的惊喜。搭配你喜欢的咖啡，邀上三两好友，快来开启一段美妙下午茶时光。'
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-msr-mobile.jpg',
+        title: '秋叶映像',
+        text: '迷你秋叶映像星享卡套装，以咖啡枝蔓为灵感，并采用摩登艺术画风，代表着咖啡本身经历多种过程最终与我们系在一起的情缘。每款搭配一个结构为包中包的零钱包，外表透明，可拆开也可合并使用。  '
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-merch1-mobile.jpg',
+        title: '宇宙满满咖啡香',
+        text: '这个中秋，星巴克小熊穿着宇航服，打扮成月兔行走在太空：带有音乐的杯盖让你喝水都动听、可以变脸的萌兔杯盖随时转换好心情、宇航员月兔给你满满元气。'
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-merch2-mobile.jpg',
+        title: '相聚在一起，总有美好发生',
+        text: '我们致力于建立社区与顾客之间的情感联系，从心出发。快邀请你的家人和朋友，相聚在一起分享快乐，一起喝杯咖啡共享美好的发生。'
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-merch3-mobile.jpg',
+        title: '享丰收 赏月圆',
+        text: '浪漫紫色的深邃秋夜，金黄色的麦穗，向秋日致以节日的礼赞。第一次为杯子穿上萌兔帆布杯套，还有经典水球杯的回归，快快带它们一起回家赏月吧。 '
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-coffee-mobile.jpg',
+        title: '秋日般醇厚馥郁',
+        text: '陪伴了我们岁岁年年的秋日综合咖啡，犹如盛宴一般浓醇馥郁，温暖着我们。来自于危地马拉安提瓜的咖啡豆优雅微妙的香料味，融合了苏门答腊咖啡柔和的草本风味，特别适合与亲朋好友一同沉醉在它美妙的风味中。'
+      },
+      {
+        url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-reserve-mobile.jpg',
+        title: '秋季臻选新体验',
+        text: '优越的地理位置、悉心的种植和加工造就咖啡豆的非凡品质和风味；有趣的卡片设计体现咖啡豆产地地质风貌及当地咖啡业引领者的变革故事，引发对于优质产地和精彩故事的无限遐想。'
+      }
+    ],
+    fatureLista: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-food-mobile.jpg',
+      title: '加“星”早餐，开启新一天',
+      text: '星巴克全新星级烘焙，经典遇上创新的焕新美味。奶香酥脆的扁桃仁流心丹麦酥，一口咬下香甜四溢；造型独特的大蘑菇头麦芬，给你更大满足。搭配醇香咖啡，相得益彰的早餐组合，美味又满足。'
+    },
+    fatureListb: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-food1-mobile.jpg',
+      title: '聚开心 玩出味',
+      text: '一口一个有颜又美味的星享小点，能让你一次品尝多种口味，每一口都带给你不一样的惊喜。搭配你喜欢的咖啡，邀上三两好友，快来开启一段美妙下午茶时光。'
+    },
+    fatureListc: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-msr-mobile.jpg',
+      title: '秋叶映像',
+      text: '迷你秋叶映像星享卡套装，以咖啡枝蔓为灵感，并采用摩登艺术画风，代表着咖啡本身经历多种过程最终与我们系在一起的情缘。每款搭配一个结构为包中包的零钱包，外表透明，可拆开也可合并使用。  '
+    },
+    fatureListd: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-merch1-mobile.jpg',
+      title: '宇宙满满咖啡香',
+      text: '这个中秋，星巴克小熊穿着宇航服，打扮成月兔行走在太空：带有音乐的杯盖让你喝水都动听、可以变脸的萌兔杯盖随时转换好心情、宇航员月兔给你满满元气。'
+    },
+    fatureListe: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-merch2-mobile.jpg',
+      title: '相聚在一起，总有美好发生',
+      text: '我们致力于建立社区与顾客之间的情感联系，从心出发。快邀请你的家人和朋友，相聚在一起分享快乐，一起喝杯咖啡共享美好的发生。'
+    },
+    fatureListf: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-merch3-mobile.jpg',
+      title: '享丰收 赏月圆',
+      text: '浪漫紫色的深邃秋夜，金黄色的麦穗，向秋日致以节日的礼赞。第一次为杯子穿上萌兔帆布杯套，还有经典水球杯的回归，快快带它们一起回家赏月吧。 '
+    },
+    fatureListg: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-coffee-mobile.jpg',
+      title: '秋日般醇厚馥郁',
+      text: '陪伴了我们岁岁年年的秋日综合咖啡，犹如盛宴一般浓醇馥郁，温暖着我们。来自于危地马拉安提瓜的咖啡豆优雅微妙的香料味，融合了苏门答腊咖啡柔和的草本风味，特别适合与亲朋好友一同沉醉在它美妙的风味中。'
+    },
+    fatureListh: {
+      url: 'https://www.starbucks.com.cn/assets/images/featured/2018autumn1/au-reserve-mobile.jpg',
+      title: '秋季臻选新体验',
+      text: '优越的地理位置、悉心的种植和加工造就咖啡豆的非凡品质和风味；有趣的卡片设计体现咖啡豆产地地质风貌及当地咖啡业引领者的变革故事，引发对于优质产地和精彩故事的无限遐想。'
+    }
+
+  }
+
+  methods= {
+    handleClick: function(index) {
+      if (this.fatureList[index].show) {
+        this.fatureList[index].show = false
+      } else {
+        this.fatureList[index].show = true
+      }
+      this.$apply()
+    }
+  }
+}
+</script>

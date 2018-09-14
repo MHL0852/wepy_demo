@@ -1,0 +1,158 @@
+<style lang="less">
+  .container {
+    width: 750rpx;
+    background: #f7f7f7;
+    padding-bottom: 120rpx;
+    .subcategories {
+      width: 100%;
+      height: 60rpx;
+      line-height: 60rpx;
+      font-size: 32rpx;
+      color: rgba(0, 0, 0, 0.87);
+      padding: 0 0 10rpx 40rpx;
+
+      .ategoryCell {
+        display: inline-block;
+        margin-right: 40rpx;
+      }
+
+      .active {
+        border-bottom: 3px solid #00A862;
+        color: rgba(0, 0, 0, 0.87);
+        font-weight: 700;
+        padding-bottom: 3px;
+      }
+    }
+
+    .wrapper{
+      width: 710rpx;
+      padding: 40rpx 20rpx;
+      .title{
+        font-size: 28rpx;
+        font-weight: 700;
+        line-height: 160%;
+        margin-bottom: 12px;
+        color: rgba(0, 0, 0, 0.56)
+      }
+      .wraContent{
+        width: 710rpx;
+        .wraCell{
+          padding: 30rpx;
+          width: 280rpx;
+          height: 360rpx;
+          display: inline-block;
+          .imgContainer{
+            width: 280rpx;
+            height: 280rpx;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-bottom: 20rpx;
+            box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.12);
+            image{
+              /*margin-top: -50rpx;*/
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .describe{
+            width: 100%;
+            color: #000;
+            font-size: 32rpx;
+            font-weight: 700;
+            line-height: 160%;
+            text-align: center;
+            white-space: normal;
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<template>
+  <header headText="饮料"></header>
+  <view class="container">
+    <view class="subcategories">
+      <view class="ategoryCell default {{active==='default'?'active':''}}">
+        <navigator url="./index">
+          季度精选
+        </navigator>
+      </view>
+      <view class="ategoryCell beverages {{active==='beverages'?'active':''}}">
+        <navigator url="./beverages">
+          饮料
+        </navigator>
+      </view>
+      <view class="ategoryCell food {{active==='food'?'active':''}}">
+        <navigator url="page/menu/food">
+          美食
+        </navigator>
+      </view>
+      <view class="ategoryCell coffee {{active==='coffee'?'active':''}}">
+        <navigator url="page/menu/coffee">
+          咖啡产品
+        </navigator>
+      </view>
+      <view class="ategoryCell merchandise {{active==='merchandise'?'active':''}}">
+        <navigator url="page/menu/merchandise">
+          商品
+        </navigator>
+      </view>
+    </view>
+
+    <repeat for="{{wrapperList}}" key="index" index="index" item="item">
+    <view class="wrapper">
+      <view class="title">
+        {{item.title}}
+      </view>
+      <view class="wraContent">
+        <repeat for="{{item.content}}" key="index" index="index" item="item">
+        <view class="wraCell">
+          <view class="imgContainer">
+            <image src="{{item.url}}"></image>
+          </view>
+          <view class="describe">
+            {{item.title}}
+          </view>
+        </view>
+        </repeat>
+      </view>
+    </view>
+    </repeat>
+  </view>
+
+  <footer></footer>
+</template>
+
+<script>
+import wepy from 'wepy'
+import Footer from '@/components/footer/footer'
+import Header from '@/components/head/index'
+
+export default class extends wepy.page {
+  config = {
+    navigationBarTitleText: '饮料'
+  }
+  data= {
+    active: 'beverages',
+    wrapperList: [
+      {
+        title: '咖啡融合冰淇淋',
+        content: [
+          { url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' }, { url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' }, { url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' }
+        ]
+      },
+      {
+        title: '冷萃冰咖啡',
+        content: [
+          { url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' }, { url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' },{ url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' }, { url: 'https://www.starbucks.com.cn/images/products/affogato.jpg', title: '阿馥奇朵™' }
+        ]
+      }
+    ]
+  }
+  components= {
+    header: Header,
+    footer: Footer
+  }
+}
+</script>
